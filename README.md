@@ -1,4 +1,4 @@
-# pirple-cpp-course [![license-badge]][license]
+# Pirple: C++ course [:link:][pirple-cpp-course] [![license-badge]][license]
 This repository contains all C++ practices from Pirple's "C++ for the Rest of US" course.
 
 ## Languages
@@ -13,3 +13,5 @@ This repository contains all C++ practices from Pirple's "C++ for the Rest of US
 
 [license-badge]: https://img.shields.io/badge/License-WTFPL-black?style=plastic
 [license]: /LICENSE
+
+[pirple-cpp-course]: https://www.pirple.com/#cst-v2-section-SJx3vzU37
