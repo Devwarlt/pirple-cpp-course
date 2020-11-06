@@ -4,6 +4,12 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 ## Languages
 ![cpp-language-badge]
 
+## Navigation
+- **Module 1** - [`Getting to Know Your IDE`][module-1]
+- **Module 2** - [`Data Types and Variables`][module-2]
+- **Module 3** - [`Basic Input and Output`][module-3]
+- **Module 4** - [`Conventions and Operators`][module-4] :hammer:
+
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
 
@@ -15,3 +21,8 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 [license]: /LICENSE
 
 [pirple-cpp-course]: https://www.pirple.com/#cst-v2-section-SJx3vzU37
+
+[module-1]: /CppFTROU.Module1
+[module-2]: /CppFTROU.Module2
+[module-3]: /CppFTROU.Module3
+[module-4]: /
