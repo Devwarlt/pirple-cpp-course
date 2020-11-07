@@ -8,7 +8,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 1** - [`Getting to Know Your IDE`][module-1]
 - **Module 2** - [`Data Types and Variables`][module-2]
 - **Module 3** - [`Basic Input and Output`][module-3]
-- **Module 4** - [`Conventions and Operators`][module-4] :hammer:
+- **Module 4** - [`Conventions and Operators`][module-4]
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
