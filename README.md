@@ -9,6 +9,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 2** - [`Data Types and Variables`][module-2]
 - **Module 3** - [`Basic Input and Output`][module-3]
 - **Module 4** - [`Conventions and Operators`][module-4]
+- **Module 5** - [`Conventions and Operators`][module-5]
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
@@ -26,3 +27,4 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 [module-2]: /CppFTROU.Module2
 [module-3]: /CppFTROU.Module3
 [module-4]: /CppFTROU.Module4
+[module-5]: /CppFTROU.Module5
