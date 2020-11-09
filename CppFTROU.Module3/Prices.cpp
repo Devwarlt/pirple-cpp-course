@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 
-int main()
+int main(void)
 {
 	float price1 = 0.0F,
 		price2 = 0.0F,

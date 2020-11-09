@@ -5,7 +5,7 @@
 const unsigned int MINUTES_PER_HOUR = 60;
 const unsigned int MAX_HOURS_RANGE = 24;
 
-int main()
+int main(void)
 {
 	std::srand(time(0));
 

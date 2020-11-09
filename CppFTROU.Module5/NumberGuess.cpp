@@ -2,7 +2,7 @@
 
 int num_guessing(int & l, int & h) { return l + ((h - l) * 0.5); }
 
-int main()
+int main(void)
 {
 	auto highest = 100, lowest = 0, attempts = 0, guess = 0;
 	auto op = ' ';

@@ -16,7 +16,7 @@ x_vals * calculate_x_values(float & a, float & b, float & c) {
 	return vals;
 }
 
-int main()
+int main(void)
 {
 	auto a = 0.0F, b = 0.0F, c = 0.0F, x1 = 0.0F, x2 = 0.0F;
 

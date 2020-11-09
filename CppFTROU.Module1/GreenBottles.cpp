@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main()
+int main(void)
 {
 	int greenBottles = 10;
 	std::cout << "There were " << greenBottles-- << " green bottles." << std::endl;
