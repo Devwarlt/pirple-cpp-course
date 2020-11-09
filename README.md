@@ -10,6 +10,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 3** - [`Basic Input and Output`][module-3]
 - **Module 4** - [`Conventions and Operators`][module-4]
 - **Module 5** - [`Statements, Switches and Loops`][module-5]
+- **Module 6** - [`Arrays and Pointers`][module-6]
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
@@ -28,3 +29,4 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 [module-3]: /CppFTROU.Module3
 [module-4]: /CppFTROU.Module4
 [module-5]: /CppFTROU.Module5
+[module-6]: /CppFTROU.Module6
