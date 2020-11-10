@@ -11,6 +11,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 4** - [`Conventions and Operators`][module-4]
 - **Module 5** - [`Statements, Switches and Loops`][module-5]
 - **Module 6** - [`Arrays and Pointers`][module-6]
+- **Module 7** - [`Binary and Bits`][module-7] :hammer:
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
@@ -30,3 +31,4 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 [module-4]: /CppFTROU.Module4
 [module-5]: /CppFTROU.Module5
 [module-6]: /CppFTROU.Module6
+[module-7]: /CppFTROU.Module7
