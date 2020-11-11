@@ -22,28 +22,23 @@ board_pos * get_board_pos_by_input(int & index) {
 }
 
 void relative_board_cell(std::string & output, char & placeholder, const bool & left_corner, const bool & right_corner) {
-	if (left_corner) output.append("  ");
-	if (!left_corner && !right_corner) output.append(1, BOARD_DIV);
+	if (left_corner) output += "  ";
+	if (!left_corner && !right_corner) output += BOARD_DIV;
 
-	output.append(" ");
+	output += " ";
 
-	if (placeholder == PLAYER_X || placeholder == PLAYER_O) output.append(1, placeholder);
-	else output.append(std::to_string((int)placeholder));
+	if (placeholder == PLAYER_X || placeholder == PLAYER_O) output += placeholder;
+	else output += std::to_string((int)placeholder);
 
-	output.append(" ");
+	output += " ";
 
-	if (right_corner) output.append("\n");
-	if (!left_corner && !right_corner) output.append(1, BOARD_DIV);
+	if (right_corner) output += "\n";
+	if (!left_corner && !right_corner) output += BOARD_DIV;
 }
 
 void board_row_separator(std::string & output) {
-	output.append("  ");
-	output.append(3, BOARD_LINE);
-	output.append(1, BOARD_INTERSECTION);
-	output.append(3, BOARD_LINE);
-	output.append(1, BOARD_INTERSECTION);
-	output.append(3, BOARD_LINE);
-	output.append("\n");
+	output += "  ", output.append(3, BOARD_LINE), output += BOARD_INTERSECTION, output.append(3, BOARD_LINE),
+		output += BOARD_INTERSECTION, output.append(3, BOARD_LINE), output += "\n";
 }
 
 void relative_board_fmt(std::string & output, char(&placeholders)[3], const bool & is_mid_row) {
@@ -94,8 +89,8 @@ void board_check_player(char(&board_inputs)[3][3], char & winner, const char * &
 		return;
 	}
 	if (board_check_horizontal(board_inputs, 1, player)) {
-		condition_fmt.append(MIDDLE);
-		condition_fmt.append(" row");
+		condition_fmt += MIDDLE;
+		condition_fmt += " row";
 		condition = condition_fmt.c_str();
 		winner = player;
 		return;
@@ -111,8 +106,8 @@ void board_check_player(char(&board_inputs)[3][3], char & winner, const char * &
 		return;
 	}
 	if (board_check_vertical(board_inputs, 1, player)) {
-		condition_fmt.append(MIDDLE);
-		condition_fmt.append(" column");
+		condition_fmt += MIDDLE;
+		condition_fmt += " column";
 		condition = condition_fmt.c_str();
 		winner = player;
 		return;
@@ -149,8 +144,7 @@ int main(void)
 
 	while (true) {
 		output.clear();
-
-		output.append("Current board state:\n");
+		output += "Current board state:\n";
 
 		if (op != 0 && op != -1) {
 			index = op - 1;
@@ -167,36 +161,26 @@ int main(void)
 
 		board_draw(output, board_inputs);
 
-		if (op == 0) output.append("\nNot a valid choice. Try again.\n");
+		if (op == 0) output += "\nNot a valid choice. Try again.\n";
 		if (is_occupied) {
 			is_occupied = false;
-			output.append("\nThat square is not available. Try again.\n");
+			output += "\nThat square is not available. Try again.\n";
 		}
 
 		board_checks(board_inputs, winner, condition, condition_fmt);
 
 		if (winner != ' ' || attempts == MAX_ATTEMPTS) break;
 
-		output.append("\nPlayer ");
-		output.append(1, current_player);
-		output.append(", enter a number between 1 and 9: ");
-
+		output += "\nPlayer ", output += current_player, output += ", enter a number between 1 and 9: ";
 		std::cout << output << std::flush;
-
 		std::cin >> op;
 		std::system(CLS);
 
 		if (op < 1 || op > 9) op = 0;
 	}
 
-	if (winner != ' ') {
-		output.append("\nPlayer ");
-		output.append(1, winner);
-		output.append(" wins on the ");
-		output.append(condition);
-		output.append("!");
-	}
-	else output.append("\nDraw. Nobody wins.");
+	if (winner != ' ') output += "\nPlayer ", output += winner, output += " wins on the ", output += condition, output += "!";
+	else output += "\nDraw. Nobody wins.";
 
 	std::cout << output << std::endl << std::endl;
 	return EXIT_SUCCESS;
