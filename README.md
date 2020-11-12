@@ -13,6 +13,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 6** - [`Arrays and Pointers`][module-6]
 - **Module 7** - [`Binary and Bits`][module-7]
 - **Module 8** - [`Application Structure`][module-8]
+- **Module 9** - [`The String Class`][module-9] :hammer:
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
@@ -34,3 +35,4 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 [module-6]: /CppFTROU.Module6
 [module-7]: /CppFTROU.Module7
 [module-8]: /CppFTROU.Module8
+[module-9]: /CppFTROU.Module9
