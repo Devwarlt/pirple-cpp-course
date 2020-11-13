@@ -13,7 +13,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 6** - [`Arrays and Pointers`][module-6]
 - **Module 7** - [`Binary and Bits`][module-7]
 - **Module 8** - [`Application Structure`][module-8]
-- **Module 9** - [`The String Class`][module-9] :hammer:
+- **Module 9** - [`The String Class`][module-9]
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
