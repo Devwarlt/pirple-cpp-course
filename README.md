@@ -14,7 +14,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 7** - [`Binary and Bits`][module-7]
 - **Module 8** - [`Application Structure`][module-8]
 - **Module 9** - [`The String Class`][module-9]
-- **Module 10** - [`Object Oriented Programming`][module-10] :hammer:
+- **Module 10** - [`Object Oriented Programming`][module-10]
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
