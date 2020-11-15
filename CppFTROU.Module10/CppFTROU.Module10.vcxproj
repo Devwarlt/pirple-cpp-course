@@ -151,7 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BreedingConstraints.cpp" />
     <ClCompile Include="Wooffurs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BreedingConstraints.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
