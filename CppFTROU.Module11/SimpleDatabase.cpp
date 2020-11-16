@@ -5,6 +5,6 @@
 
 auto main(void) -> int
 {
-	playlist_tracker::display_main_menu();
+	playlist_tracker::base::index::display_main_menu();
 	return EXIT_SUCCESS;
 }
