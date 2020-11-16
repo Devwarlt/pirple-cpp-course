@@ -151,7 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CppFTROU.Module11.cpp" />
+    <ClCompile Include="PlaylistTracker.cpp" />
+    <ClCompile Include="SimpleDatabase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PlaylistTracker.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
