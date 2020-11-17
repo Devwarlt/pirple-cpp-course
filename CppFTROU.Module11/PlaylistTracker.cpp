@@ -1,6 +1,7 @@
 #include "PlaylistTracker.hpp"
 
 #include <iostream>
+#include <fstream>
 
 using namespace playlist_tracker;
 
@@ -46,9 +47,9 @@ auto base::utils::is_number(std::string & str_num)->bool
 		&& str_num.find_first_not_of(constants::INTEGER_STR_VALUES) == std::string::npos;
 }
 
-auto base::index::display_create_track_menu(
-	playlist * & playlist, std::string & input)->void
+auto base::index::display_create_track_menu(playlist * & playlist)->void
 {
+	std::string input;
 	while (true) {
 		std::cout << std::endl << "Enter a track or 'Q' to quit: " << std::flush;
 		std::getline(std::cin, input);
@@ -69,7 +70,7 @@ auto base::index::display_create_track_menu(
 					<< constants::labels::ARTIST << track->artist << std::endl
 					<< std::endl << std::flush;
 
-				playlist->add_track(track);
+				playlist->add_track(track, false);
 			}
 		}
 
@@ -78,30 +79,34 @@ auto base::index::display_create_track_menu(
 	}
 }
 
-auto playlist_tracker::base::index::display_track_menu(
-	int & index, std::string & input)->void
+auto playlist_tracker::base::index::display_track_menu(int & index)->void
 {
+	std::string input;
 	while (true) {
 		auto playlist = base::PLAYLISTS->operator[](index);
 		std::cout << std::endl << "Playlist '" << playlist->get_name() << "' "
 			<< "Menu:" << std::endl << std::endl
 			<< "- Press [" << constants::options::ADD_TRACK
-			<< "] to add track(s) to playlist." << std::endl << std::endl
+			<< "] to add track(s) to playlist." << std::endl
 			<< "- Press [" << constants::options::DELETE_PLAYLIST
-			<< "] to delete this playlist." << std::endl << std::endl
+			<< "] to delete this playlist." << std::endl
 			<< "- Press [" << constants::options::EXIT
 			<< "] to exit to main menu." << std::endl << std::endl
 			<< std::flush;
+		std::cout << std::endl << "Your choice: " << std::flush;
+		std::getline(std::cin, input);
 
 		if (input == constants::options::EXIT)
 			break;
 		else if (input == constants::options::DELETE_PLAYLIST) {
 			base::PLAYLISTS->erase(base::PLAYLISTS->begin() + index);
 			std::cout << std::endl << "Playlist successfully removed."
-				<< std::endl << std::flush;
+				<< std::endl << std::endl << std::flush;
+			std::system(constants::terminal::PAUSE);
+			break;
 		}
 		else if (input == constants::options::ADD_TRACK)
-			base::index::display_create_track_menu(playlist, input);
+			base::index::display_create_track_menu(playlist);
 		else
 			std::cout << std::endl << "Unknown option, try again..."
 			<< std::endl << std::endl;
@@ -127,9 +132,6 @@ auto base::index::display_create_playlist_menu(void)->void
 
 auto base::index::display_playlist_menu(std::string & input)->bool
 {
-	// todo:
-	//	- properly format tracks per playlist
-	//	- figure out what's causing weird console output symbols.
 	std::cout << std::endl << "Select Playlist #" << std::endl
 		<< std::endl << std::flush;
 	for (auto i = 0; i < base::PLAYLISTS->size(); i++) {
@@ -157,15 +159,17 @@ auto base::index::display_playlist_menu(std::string & input)->bool
 		return false;
 	}
 
-	auto playlist = base::PLAYLISTS->operator[](op);
-	base::index::display_create_track_menu(playlist, input);
-	return true;
+	std::system(constants::terminal::CLS);
+	base::index::display_track_menu(op);
+	return false;
 }
 
 auto base::index::display_main_menu(void)->void
 {
 	if (base::PLAYLISTS == nullptr)
 		base::PLAYLISTS = new std::vector<base::playlist *>();
+
+	base::utils::io::read_contents();
 
 	std::string op;
 	while (true) {
@@ -193,13 +197,16 @@ auto base::index::display_main_menu(void)->void
 				else
 					std::cout << std::endl << "Unknown option, try again..."
 					<< std::endl << std::endl;
+
+				std::system(constants::terminal::PAUSE);
 			}
 		}
 
-		std::system(constants::terminal::PAUSE);
 		std::system(constants::terminal::CLS);
 	}
+
 	std::cout << std::endl << "Farewell!" << std::endl;
+	base::utils::io::write_contents();
 }
 
 base::playlist::playlist(std::string name)
@@ -217,10 +224,12 @@ auto base::playlist::get_name(void)->std::string
 	return this->name;
 }
 
-auto base::playlist::add_track(track * & track) -> void
+auto base::playlist::add_track(track * & track, const bool silent) -> void
 {
 	this->tracks.push_back(*track);
-	std::cout << std::endl << "Track successfully added!" << std::endl << std::flush;
+	if (!silent)
+		std::cout << std::endl << "Track successfully added!"
+		<< std::endl << std::flush;
 }
 
 auto base::playlist::remove_track(int index) -> void
@@ -234,7 +243,7 @@ auto base::playlist::remove_track(int index) -> void
 		std::cout << std::endl << "Track not removed!" << std::endl << std::flush;
 }
 
-auto base::playlist::display_tracks(void)->const char *
+auto base::playlist::display_tracks(void)->std::string
 {
 	if (this->tracks.size() == 0)
 		return "";
@@ -247,9 +256,73 @@ auto base::playlist::display_tracks(void)->const char *
 		output += constants::labels::TITLE_LABEL;
 		output += track->title;
 		output += "\n  ";
+		output += constants::separators::SEPARATOR_2;
 		output += constants::labels::ARTIST;
 		output += track->artist;
 		output += "\n";
 	}
-	return output.c_str();
+	return output;
+}
+
+auto base::playlist::get_tracks(void)->std::vector<track>
+{
+	return this->tracks;
+}
+
+auto base::utils::io::read_contents()->void
+{
+	auto filename = std::string("my_playlist");
+	filename += constants::FILE_EXTENSION;
+	std::ifstream stream(filename);
+	if (!stream.is_open())
+		return;
+
+	while (!stream.eof()) {
+		std::string name, size;
+		std::getline(stream, name);
+		std::getline(stream, size);
+
+		if (name == "" && size == "")
+			break;
+
+		auto playlist = new base::playlist(name);
+		auto track_size = std::stoi(size);
+		for (auto i = 0; i < track_size; i++) {
+			auto track = new base::track();
+			std::string title, artist;
+			std::getline(stream, track->title);
+			std::getline(stream, track->artist);
+			playlist->add_track(track, true);
+		}
+
+		base::PLAYLISTS->push_back(playlist);
+	}
+
+	stream.close();
+
+	std::cout << "Playlist loaded." << std::endl << std::endl;
+}
+
+auto base::utils::io::write_contents()->void
+{
+	auto filename = std::string("my_playlist");
+	filename += constants::FILE_EXTENSION;
+	std::ofstream stream(filename);
+	for (auto i = 0; i < base::PLAYLISTS->size(); i++) {
+		auto playlist = base::PLAYLISTS->operator[](i);
+		auto name = playlist->get_name();
+		auto tracks = playlist->get_tracks();
+		auto size = std::to_string(tracks.size());
+		stream << name << std::endl;
+		stream << size << std::endl;
+		for (auto j = 0; j < tracks.size(); j++) {
+			auto track = tracks[j];
+			stream << track.title << std::endl;
+			stream << track.artist << std::endl;
+		}
+	}
+
+	stream.close();
+
+	std::cout << std::endl << "Playlist saved." << std::endl;
 }

@@ -44,9 +44,10 @@ namespace playlist_tracker {
 			playlist(std::string name);
 			virtual ~playlist(void);
 			auto get_name(void)->std::string;
-			auto add_track(track * & track)->void;
+			auto add_track(track * & track, const bool silent)->void;
 			auto remove_track(int index)->void;
-			auto display_tracks(void)->const char *;
+			auto display_tracks(void)->std::string;
+			auto get_tracks(void)->std::vector<track>;
 		private:
 			std::string name;
 			std::vector<track> tracks;
@@ -58,9 +59,8 @@ namespace playlist_tracker {
 			auto display_main_menu(void)->void;
 			auto display_playlist_menu(std::string & input)->bool;
 			auto display_create_playlist_menu(void)->void;
-			auto display_track_menu(int & index, std::string & input)->void;
-			auto display_create_track_menu(
-				playlist * & playlist, std::string & input)->void;
+			auto display_track_menu(int & index)->void;
+			auto display_create_track_menu(playlist * & playlist)->void;
 		}
 
 		namespace utils {
@@ -77,6 +77,11 @@ namespace playlist_tracker {
 					const char * & pattern, std::string & input,
 					track * & track)->void;
 			};
+
+			namespace io {
+				auto read_contents()->void;
+				auto write_contents()->void;
+			}
 
 			auto is_number(std::string & str_num)->bool;
 		}

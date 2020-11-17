@@ -15,7 +15,7 @@ This repository contains all practices from [Pirple's "C++ for the Rest of US" c
 - **Module 8** - [`Application Structure`][module-8]
 - **Module 9** - [`The String Class`][module-9]
 - **Module 10** - [`Object Oriented Programming`][module-10]
-- **Module 11** - [`Working With Data`][module-11] :hammer:
+- **Module 11** - [`Working With Data`][module-11]
 
 ### Contributors
 - Nádio ~ [@Devwarlt][nadio-ref]
